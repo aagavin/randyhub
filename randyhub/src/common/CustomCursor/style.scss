@@ -44,6 +44,13 @@
   right: 100px;
 }
 
+@media (max-width: 800px),
+       (max-height: 500px) {
+  .toggle-cursor {
+    display: none;
+  }
+}
+
 .switch {
   position: relative;
   display: inline-block;
