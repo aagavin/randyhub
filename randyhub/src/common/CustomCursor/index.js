@@ -1,44 +1,39 @@
-/* eslint-disable no-underscore-dangle */
 import {
-  TweenLite, gsap,
+  gsap,
 } from 'gsap';
 import React, {
   PureComponent,
 } from 'react';
 import sampleImage from '../../assets/mashedpotatoes.jpg';
-
+import sampleMouth from '../../assets/coolhead.png';
 import './style.scss';
 
 class CustomCursor extends PureComponent {
   constructor(props) {
     super(props);
     this.moveCircle = this.moveCircle.bind(this);
-    this.hoverFunc = this.hoverFunc.bind(this);
-    this.unhoverFunc = this.unhoverFunc.bind(this);
-    this.hideFollow = this.hideFollow.bind(this);
-    this.showFollow = this.showFollow.bind(this);
     this.setScaleAndRotation = this.setScaleAndRotation.bind(this);
-    this.circleTween = null;
-    this.followTween = null;
-    this.transformRegex = /translate3d\((?<xPos>[\d.-]+)px, (?<yPos>[\d.-]+)px, (?<zPos>[\d.-]+)px\)/gm;
+    this.setMouthScaleAndRotation = this.setMouthScaleAndRotation.bind(this);
+    this.toggleSlider = this.toggleSlider.bind(this);
+    this.state = {
+      cursorToggled: false,
+    };
   }
 
   componentDidMount() {
     window.addEventListener('mousemove', this.moveCircle);
     // window.addEventListener('scroll', this.onScroll);
-    // window.addEventListener('onmouseover', this.hoverFunc);
-    // window.addEventListener('onmouseout', this.unhoverFunc);
   }
 
   onScroll(event) {
     if (this.circle) {
-      TweenLite.to(this.circle, 0.2, {
+      gsap.to(this.circle, 0.1, {
         x: event.x,
         y: event.y,
       });
     }
     if (this.follow) {
-      TweenLite.to(this.follow, 0.7, {
+      gsap.to(this.follow, 0.7, {
         x: event.x,
         y: event.y,
       });
@@ -46,31 +41,60 @@ class CustomCursor extends PureComponent {
   }
 
   setScaleAndRotation(event) {
-    const target = this.follow.getBoundingClientRect();
-    const centerX = target.x + target.width / 2;
-    const centerY = target.y + target.height / 2;
-    const scale = Math.sqrt(((event.y - centerY) ** 2) + ((event.x - centerX) ** 2)) * 0.01;
+    if (this.follow) {
+      const target = this.follow.getBoundingClientRect();
+      const centerX = target.x + target.width / 2;
+      const centerY = target.y + target.height / 2;
+      const scale = Math.min(
+        Math.sqrt(((event.y - centerY) ** 2) + ((event.x - centerX) ** 2)) * 0.002,
+        1,
+      );
+      gsap.set(this.follow, {
+        rotation: Math.atan2(
+          (event.y - centerY),
+          (event.x - centerX),
+        ) * (180 / Math.PI) + 90,
+        scale,
+      });
+    }
+  }
 
-    gsap.set(this.follow, {
-      rotation: Math.atan2(
-        (event.y - centerY),
-        (event.x - centerX),
-      ) * (180 / Math.PI) + 90,
-      scale,
-    });
+  setMouthScaleAndRotation(event) {
+    if (this.mouth) {
+      const target = this.mouth.getBoundingClientRect();
+      const centerX = target.x + target.width / 2;
+      const centerY = target.y + target.height / 2;
+      const scale = Math.min(
+        Math.sqrt(((event.y - centerY) ** 2) + ((event.x - centerX) ** 2)) * 0.004,
+        1.5,
+      );
+      gsap.set(this.mouth, {
+        rotation: Math.atan2(
+          (event.y - centerY),
+          (event.x - centerX),
+        ) * (180 / Math.PI),
+        scale,
+      });
+    }
+  }
+
+  toggleSlider() {
+    this.setState((prevState) => ({
+      cursorToggled: !prevState.cursorToggled,
+    }));
   }
 
   moveCircle(event) {
     if (event) {
       if (this.circle) {
-        TweenLite.to(this.circle, 0.2, {
+        gsap.to(this.circle, 0.1, {
           x: event.x,
           y: event.y,
           z: 0.1,
         });
       }
       if (this.follow) {
-        gsap.to(this.follow, 2.0, {
+        gsap.to(this.follow, 1.0, {
           x: event.x,
           y: event.y,
           z: 0.1,
@@ -78,83 +102,54 @@ class CustomCursor extends PureComponent {
           onUpdateParams: [event],
         });
       }
-    }
-  }
-
-  hoverFunc() {
-    if (this.circle) {
-      TweenLite.to(this.circle, 0.3, {
-        opacity: 1,
-        scale: 0,
-      });
-    }
-    if (this.follow) {
-      TweenLite.to(this.follow, 0.3, {
-        scale: 2,
-      });
-    }
-  }
-
-  hideFollow() {
-    if (this.circle) {
-      TweenLite.to(this.circle, 0.3, {
-        opacity: 1,
-        scale: 1,
-      });
-    }
-    if (this.follow) {
-      TweenLite.to(this.follow, 0.3, {
-        scale: 0,
-      });
-    }
-  }
-
-  showFollow() {
-    if (this.follow) {
-      TweenLite.to(this.follow, 0.3, {
-        scale: 1,
-      });
-    }
-  }
-
-  unhoverFunc() {
-    if (this.circle) {
-      TweenLite.to(this.circle, 0.3, {
-        opacity: 1,
-        scale: 1,
-      });
-    }
-    if (this.follow) {
-      TweenLite.to(this.follow, 0.3, {
-        scale: 1,
-      });
+      if (this.mouth) {
+        gsap.to(this.mouth, 2.0, {
+          x: event.x,
+          y: event.y,
+          z: 0.1,
+          onUpdate: this.setMouthScaleAndRotation,
+          onUpdateParams: [event],
+        });
+      }
     }
   }
 
   render() {
+    const { cursorToggled } = this.state;
     return (
-      <div className="cursor">
-        <div
-          className="cursor-circle"
-          ref={(ref) => {
-            this.circle = ref;
-          }}
-        />
-        <img
-          src={sampleImage}
-          alt="Img"
-          className="cursor-circle-follow"
-          ref={(ref) => {
-            this.follow = ref;
-          }}
-        />
-        <div
-          className="cursor-circle-name"
-          ref={(ref) => {
-            this.list = ref;
-          }}
-        />
-      </div>
+      <>
+        <div className="cursor">
+          <div
+            className={`cursor-circle ${!cursorToggled ? 'disabled' : ''}`}
+            ref={(ref) => {
+              this.circle = ref;
+            }}
+          />
+          <img
+            src={sampleImage}
+            alt="Img"
+            className={`cursor-circle-follow ${!cursorToggled ? 'disabled' : ''}`}
+            ref={(ref) => {
+              this.follow = ref;
+            }}
+          />
+          <img
+            src={sampleMouth}
+            alt="Img"
+            className={`cursor-circle-follow ${!cursorToggled ? 'disabled' : ''}`}
+            ref={(ref) => {
+              this.mouth = ref;
+            }}
+          />
+        </div>
+        <div className="toggle-cursor">
+          <img className="slider-hint" src={sampleMouth} alt="Click the toggle..." />
+          <label htmlFor="slider-checkbox" className="switch">
+            <input onClick={this.toggleSlider} id="slider-checkbox" type="checkbox" />
+            <span className="slider round" />
+          </label>
+        </div>
+      </>
     );
   }
 }

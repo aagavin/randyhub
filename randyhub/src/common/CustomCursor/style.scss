@@ -1,5 +1,4 @@
 .cursor-circle {
-  // display: none;
   position: fixed;
   background-color: white;
   width: 10px;
@@ -11,12 +10,14 @@
   transform: scale(1);
   transform-style: preserve-3d;
   mix-blend-mode: difference;
+
+  &.disabled {
+    display: none;
+  }
 }
 
 .cursor-circle-follow {
-  // display: none;
   position: fixed;
-  // border: 1px solid white;
   width: 120px;
   height: 120px;
   left: -60px;
@@ -27,26 +28,80 @@
   z-index: 10000;
   transform: scale(1);
   transform-style: preserve-3d;
-  // mix-blend-mode: difference;
+
+  &.disabled {
+    display: none;
+  }
 }
 
 .cursor {
   pointer-events: none;
 }
 
-a:hover,
-a:visited,
-a:link,
-a:active {
-  cursor: none;
+.toggle-cursor {
+  position: fixed;
+  bottom: 100px;
+  right: 100px;
 }
 
-.btn:not(:disabled):not(.disabled) {
-  cursor: none;
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
 }
 
-@media only screen and (min-width: 1024px) {
-  body {
-    cursor: none !important;
-  }
+.switch #slider-checkbox {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  z-index: 12000;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+#slider-checkbox:checked + .slider {
+  background-image: url('../../assets/CoolBro.jpg');
+}
+
+#slider-checkbox:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.slider-hint {
+  position: absolute;
+  width: 50px;
+  top: -50px;
 }
