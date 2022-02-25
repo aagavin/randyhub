@@ -1,19 +1,42 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './styles.module.scss';
 import Curtain from './component/Curtain';
-import Links from '../../common/Links';
 
 const Main = () => (
   <div className={`${styles.body}`}>
     <h1 className={`${styles.title}`}>
-      <span className={`${styles.italics}`}>RAN</span>
-      <span className={`${styles.bold}`}>DYHUB</span>
+      RANDYHUB
     </h1>
     <h2 className={`${styles.subtitle}`}>
-      sponsored by chaos
+      sponsored by chaos chat
     </h2>
     <Curtain />
-    <Links />
+    <div className={`${styles.links}`}>
+      {' '}
+      &#8260;
+      <Link to="/snack-of-champions">The Snack of Champions</Link>
+      <br />
+      {' '}
+      &#8260;
+      <Link to="/covid-counter">Covid Counter</Link>
+      <br />
+      {' '}
+      &#8260;
+      <Link to="/cooking-with-randy">Cooking with Randy</Link>
+      <br />
+      {' '}
+      &#8260;
+      <Link to="/git-repo">Randy Hub repo info</Link>
+      <br />
+      {' '}
+      &#8260;
+      <Link to="/aurora-watch">Aurorawatch</Link>
+      <br />
+      {' '}
+      &#8260;
+      <Link to="/movies-with-randy">Movies with Randy</Link>
+    </div>
   </div>
 );
 export default Main;
