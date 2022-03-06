@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './styles.module.scss';
 import CustomCursor from '../../common/CustomCursor';
 
@@ -14,13 +15,13 @@ const CookingWithRandy = () => (
         <br />
         Need sustenance for your gamer bod?
         <br />
-        Look no further than this simple recipe
+        Look no further than this simple recipe.
         <br />
         <br />
         Ingredients:
         <ul>
           <li>Instant Mashed Potatoes </li>
-          <li className={`${styles.italics}`}>Literally nothing else</li>
+          <li><i>Literally nothing else</i></li>
         </ul>
         <br />
         Steps:
@@ -30,6 +31,10 @@ const CookingWithRandy = () => (
           <li>Pour into gamer mouth</li>
           <li>Respawn and return to your gaming</li>
         </ol>
+        <br />
+        Bonus points:  Add Randy&apos;s
+        {' '}
+        <Link to="/snack-of-champions">favourite snack of choice.</Link>
       </p>
     </div>
   </>

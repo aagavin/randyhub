@@ -51,9 +51,13 @@ const MenuDropdown = () => {
         >
           X
         </button>
-        <div className={`${styles.body}`}>
-          <p><b>Projects</b></p>
-          <div className={`${styles.link}`}>
+        <div className={`${styles.links}`}>
+          <h3>
+            Content
+          </h3>
+          <div>
+            {' '}
+            &#8260;
             <Link
               to="/"
               onClick={() => toggleDropdown()}
@@ -61,9 +65,10 @@ const MenuDropdown = () => {
             >
               Main
             </Link>
-
           </div>
-          <div className={`${styles.link}`}>
+          <div>
+            {' '}
+            &#8260;
             <Link
               to="/snack-of-champions"
               onClick={() => toggleDropdown()}
@@ -71,9 +76,10 @@ const MenuDropdown = () => {
             >
               The Snack of Champions
             </Link>
-
           </div>
-          <div className={`${styles.link}`}>
+          <div>
+            {' '}
+            &#8260;
             <Link
               to="/covid-counter"
               onClick={() => toggleDropdown()}
@@ -81,9 +87,10 @@ const MenuDropdown = () => {
             >
               Covid Counter
             </Link>
-
           </div>
-          <div className={`${styles.link}`}>
+          <div>
+            {' '}
+            &#8260;
             <Link
               to="/cooking-with-randy"
               onClick={() => toggleDropdown()}
@@ -91,9 +98,10 @@ const MenuDropdown = () => {
             >
               Cooking with Randy
             </Link>
-
           </div>
-          <div className={`${styles.link}`}>
+          <div>
+            {' '}
+            &#8260;
             <Link
               to="/git-repo"
               onClick={() => toggleDropdown()}
@@ -101,9 +109,10 @@ const MenuDropdown = () => {
             >
               Randy Hub repo info
             </Link>
-
           </div>
-          <div className={`${styles.link}`}>
+          <div>
+            {' '}
+            &#8260;
             <Link
               to="/aurora-watch"
               onClick={() => toggleDropdown()}
@@ -111,9 +120,10 @@ const MenuDropdown = () => {
             >
               Aurorawatch
             </Link>
-
           </div>
-          <div className={`${styles.link}`}>
+          <div>
+            {' '}
+            &#8260;
             <Link
               to="/movies-with-randy"
               onClick={() => toggleDropdown()}
@@ -121,7 +131,6 @@ const MenuDropdown = () => {
             >
               Movies with Randy
             </Link>
-
           </div>
         </div>
       </div>
