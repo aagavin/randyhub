@@ -101,7 +101,9 @@ const GitRepo = () => {
             ))}
           </tbody>
         </table>
+        <br />
         {simpleCircles(contributorsData)}
+        <br />
         {marblesVisualization(contributorsData)}
       </div>
     </>
