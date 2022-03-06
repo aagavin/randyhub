@@ -13,6 +13,9 @@ const Main = () => (
     </h2>
     <Curtain />
     <div className={`${styles.links}`}>
+      <h3>
+        Content
+      </h3>
       {' '}
       &#8260;
       <Link to="/snack-of-champions">The Snack of Champions</Link>

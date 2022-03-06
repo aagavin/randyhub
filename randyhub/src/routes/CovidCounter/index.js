@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Links from '../../common/Links';
 import styles from './styles.module.scss';
+import MenuDropdown from '../../common/MenuDropdown';
 
 const CovidCounter = () => {
   const [covidData, setCovidData] = useState([]);
@@ -23,6 +23,7 @@ const CovidCounter = () => {
 
   return (
     <>
+      <MenuDropdown />
       <div className={`${styles['covid-dashboard']}`}>
         <h1>COVID DASHBOARD for Canada</h1>
         <table>
@@ -54,7 +55,6 @@ const CovidCounter = () => {
           </tfoot>
         </table>
       </div>
-      <Links />
     </>
   );
 };

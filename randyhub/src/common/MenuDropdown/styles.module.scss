@@ -1,0 +1,79 @@
+.dropdown {
+  opacity: 0;
+  position: absolute;
+  z-index: 1000;
+  background-color: #17141a;
+  width: 100%;
+  height: 100%;
+  font-size: 1em;
+  letter-spacing: 1px;
+  top: -100vh;
+
+  .body {
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    max-width: 650px;
+    width: 50%;
+    margin: 0 auto;
+    padding-top: 25vh;
+    
+    .link {
+      padding-left: 10px;
+      font-family: adelle-sans, sans-serif;
+      font-weight: 100;
+      font-size: 1.5em;
+      color: #FF5349;
+
+      a {
+        text-decoration: none !important;
+        color: #FF5349;
+        margin: 0px 5px;
+        transition: 0.5s;
+
+        &:hover {
+          font-weight: 100;
+          color: #FFFFFF;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 798px) {
+  .dropdown {
+    padding-left: 0;
+    font-size: 1em;
+    text-align: center;
+
+    h2 {
+      width: 100vw;
+    }
+  }
+}
+
+.btn-menu {
+  position: absolute;
+  font-size: 2em;
+  color: #FF5349;
+  top: 50px;
+  right: 50px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: adelle-sans, sans-serif;
+  font-weight: 100;
+}
+
+.btn-exit {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color:  #FF5349;
+  font-size: 2em;
+  font-family: adelle-sans, sans-serif;
+  font-weight: 100;
+}

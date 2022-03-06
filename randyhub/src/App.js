@@ -4,11 +4,9 @@ import {
 } from 'react-router-dom';
 import Main from './routes/Main';
 import './index.css';
-import CustomCursor from './common/CustomCursor';
 
 const App = () => (
   <div id="app">
-    <CustomCursor />
     <BrowserRouter>
       <Suspense fallback={<div>Loading...</div>}>
         <Switch>

@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #111;
+  background-color: #17141a;
 }
 
 code {
@@ -15,4 +15,29 @@ code {
 
 #root {
   overflow-x: hidden;
+}
+
+p {
+  color: #FF5349;
+  font-size: 1.2em;
+  font-family: adelle-sans, sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+h1 {
+  background: #FF5349;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 4.5em;
+  line-height: 0.9em;
+  margin: 20px 20px 0 0px;
+  font-family: adelle-sans, sans-serif;
+  font-weight: 900;
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+td {
+  color: #FF5349;
 }

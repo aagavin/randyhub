@@ -5,34 +5,25 @@
   padding-bottom: 2em;
 
   h1 {
-    font-family: bicyclette, sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    text-transform: uppercase;
     font-size: 5em;
-    line-height: 1em;
-    background: -webkit-linear-gradient(#333333, #111111);
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin: 5vh 0;
-    max-width: 80vw;
+    padding: 50px 0;
   }
 
   table {
     width: 90%;
-    border: 0.1rem solid #333333;
+    border: 0.1rem solid #FF5349;
     border-collapse: collapse;
   }
 
   table thead tr th {
-    background-color: #333333;
+    background-color: #FF5349;
     color: #eeeeee;
     padding: 0.4em;
     text-transform: capitalize;
   }
 
   table > tbody > tr:hover {
-    background-color: #77caae;
+    background-color: #272727;
     border: 1px solid #111111;
   }
 
