@@ -53,13 +53,76 @@ const MenuDropdown = () => {
         </button>
         <div className={`${styles.body}`}>
           <p><b>Projects</b></p>
-          <div className={`${styles.link}`}><Link to="/">Main</Link></div>
-          <div className={`${styles.link}`}><Link to="/snack-of-champions">The Snack of Champions</Link></div>
-          <div className={`${styles.link}`}><Link to="/covid-counter">Covid Counter</Link></div>
-          <div className={`${styles.link}`}><Link to="/cooking-with-randy">Cooking with Randy</Link></div>
-          <div className={`${styles.link}`}><Link to="/git-repo">Randy Hub repo info</Link></div>
-          <div className={`${styles.link}`}><Link to="/aurora-watch">Aurorawatch</Link></div>
-          <div className={`${styles.link}`}><Link to="/movies-with-randy">Movies with Randy</Link></div>
+          <div className={`${styles.link}`}>
+            <Link
+              to="/"
+              onClick={() => toggleDropdown()}
+              onKeyPress={() => toggleDropdown()}
+            >
+              Main
+            </Link>
+
+          </div>
+          <div className={`${styles.link}`}>
+            <Link
+              to="/snack-of-champions"
+              onClick={() => toggleDropdown()}
+              onKeyPress={() => toggleDropdown()}
+            >
+              The Snack of Champions
+            </Link>
+
+          </div>
+          <div className={`${styles.link}`}>
+            <Link
+              to="/covid-counter"
+              onClick={() => toggleDropdown()}
+              onKeyPress={() => toggleDropdown()}
+            >
+              Covid Counter
+            </Link>
+
+          </div>
+          <div className={`${styles.link}`}>
+            <Link
+              to="/cooking-with-randy"
+              onClick={() => toggleDropdown()}
+              onKeyPress={() => toggleDropdown()}
+            >
+              Cooking with Randy
+            </Link>
+
+          </div>
+          <div className={`${styles.link}`}>
+            <Link
+              to="/git-repo"
+              onClick={() => toggleDropdown()}
+              onKeyPress={() => toggleDropdown()}
+            >
+              Randy Hub repo info
+            </Link>
+
+          </div>
+          <div className={`${styles.link}`}>
+            <Link
+              to="/aurora-watch"
+              onClick={() => toggleDropdown()}
+              onKeyPress={() => toggleDropdown()}
+            >
+              Aurorawatch
+            </Link>
+
+          </div>
+          <div className={`${styles.link}`}>
+            <Link
+              to="/movies-with-randy"
+              onClick={() => toggleDropdown()}
+              onKeyPress={() => toggleDropdown()}
+            >
+              Movies with Randy
+            </Link>
+
+          </div>
         </div>
       </div>
     </>

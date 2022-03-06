@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './styles.module.scss';
 import { simpleCircles, marblesVisualization } from './visualizations';
-import MenuDropdown from '../../common/MenuDropdown';
 
 const GitRepo = () => {
   const [contributorsData, setContributorsData] = useState([]);
@@ -50,7 +49,6 @@ const GitRepo = () => {
 
   return (
     <>
-      <MenuDropdown />
       <div className={`${styles['git-repo']}`}>
         <h1>{title}</h1>
         <h2>{description}</h2>

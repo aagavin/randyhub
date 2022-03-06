@@ -1,12 +1,10 @@
 import React from 'react';
-import MenuDropdown from '../../common/MenuDropdown';
 import styles from './styles.module.scss';
 import CustomCursor from '../../common/CustomCursor';
 
 const CookingWithRandy = () => (
   <>
     <CustomCursor />
-    <MenuDropdown />
     <div className={`${styles['cooking-with-randy']}`}>
       <h1>Cooking with Randy</h1>
       <p>

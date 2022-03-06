@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { withRouter } from 'react-router-dom';
-import MenuDropdown from '../../common/MenuDropdown';
 import styles from './styles.module.scss';
 
 const MoviesWithRandy = (props) => {
@@ -46,7 +45,6 @@ const MoviesWithRandy = (props) => {
 
   return (
     <>
-      <MenuDropdown />
       <div className={`${styles['movies-with-randy']}`}>
         <h1>Movies with Randy</h1>
         <p>Watch movies that Randy has directed, written, and acted in:</p>

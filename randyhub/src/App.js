@@ -3,11 +3,13 @@ import {
   BrowserRouter, Route, Switch,
 } from 'react-router-dom';
 import Main from './routes/Main';
+import MenuDropdown from './common/MenuDropdown';
 import './index.css';
 
 const App = () => (
   <div id="app">
     <BrowserRouter>
+      <MenuDropdown />
       <Suspense fallback={<div>Loading...</div>}>
         <Switch>
           <Route component={Main} exact path="/" />
