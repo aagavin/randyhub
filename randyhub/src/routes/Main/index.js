@@ -49,8 +49,8 @@ const Main = (props) => {
         </h3>
         <ReactSlider
           className="horizontal-slider"
-          thumbClassName="example-thumb"
-          trackClassName="example-track"
+          thumbClassName="hue-shift-thumb"
+          trackClassName="hue-shift-track"
           onChange={(value) => { setHueFilter(value); }}
           value={hueFilter}
         />

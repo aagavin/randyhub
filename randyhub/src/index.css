@@ -123,7 +123,7 @@ table > tr > td:nth-child(3n) {
   max-width: 300px;
 }
 
-.example-thumb {
+.hue-shift-thumb {
   cursor: pointer;
   position: absolute;
   z-index: 100;
@@ -134,25 +134,25 @@ table > tr > td:nth-child(3n) {
   box-shadow: 0 0 2px 0 rgb(0 0 0 / 44%);
 }
 
-.example-thumb.active {
+.hue-shift-thumb.active {
   background-color: grey;
 }
 
-.example-track {
+.hue-shift-track {
   position: relative;
   background: #ddd;
 }
 
-.example-track.example-track-0 {
+.hue-shift-track.hue-shift-track-0 {
   background: #624da4;
 }
 
-.horizontal-slider .example-track {
+.horizontal-slider .hue-shift-track {
   top: 20px;
   height: 4px;
 }
 
-.horizontal-slider .example-thumb {
+.horizontal-slider .hue-shift-thumb {
   top: 12px;
   width: 10px;
   outline: none;
