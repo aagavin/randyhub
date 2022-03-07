@@ -15,23 +15,24 @@
     padding-top: 25vh;
   }
 
-  .links, .chaos {
+  .links,
+  .chaos {
     display: flex;
     flex-direction: column;
     font-family: adelle-sans, sans-serif;
     font-weight: 100;
     font-size: 1.2em;
-    color: #FF5349;
-  
+    color: #ff5349;
+
     a {
       text-decoration: none !important;
-      color: #FF5349;
-      margin: 0px 5px;
+      color: #ff5349;
+      margin: 0 5px;
       transition: 0.5s;
-  
+
       &:hover {
         font-weight: 100;
-        color: #FFFFFF;
+        color: #ffffff;
       }
     }
   }
@@ -52,10 +53,11 @@
   }
 }
 
-.btn-menu, .btn-exit {
+.btn-menu,
+.btn-exit {
   position: absolute;
   font-size: 2em;
-  color: #FF5349;
+  color: #ff5349;
   top: 50px;
   right: 50px;
   background: none;
