@@ -15,9 +15,9 @@ const AuroraWatch = () => {
             src="http://www.aurorawatch.ca/widget.php"
           />
         </a>
-        <div>
+        <p>
           Source: Aurora watch (click to go to)
-        </div>
+        </p>
       </div>
     </>
   );

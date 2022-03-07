@@ -1,45 +1,7 @@
 .git-repo {
   margin: 0 auto;
   width: calc(100% - 100px);
-  padding-left: 50px;
-  padding-bottom: 2em;
-
-  h1 {
-    margin: 5vh 0;
-  }
-
-  table {
-    width: 90%;
-    border: 0.1rem solid #FF5349;
-    border-collapse: collapse;
-  }
-
-  table thead tr th {
-    background-color: #FF5349;
-    color: #eeeeee;
-    padding: 0.4em;
-    text-transform: capitalize;
-  }
-
-  table > tbody > tr:hover {
-    background-color: #272727;
-    border: 1px solid #111111;
-  }
-
-  table > tbody > tr > td,
-  table > tfoot > tr > td {
-    border: 1px solid #111111;
-    padding: 0.4em;
-  }
-
-  table > tr > td:nth-child(3n+1) {
-    font-style: italic;
-  }
-
-  table > tr > td:nth-child(2n),
-  table > tr > td:nth-child(3n) {
-    text-align: right;
-  }
+  padding: 50px;
 }
 
 @media (max-width: 798px) {
@@ -48,16 +10,6 @@
     padding-bottom: 2em;
     padding-left: 10px;
     padding-right: 10px;
-
-    h1 {
-      margin: 50px auto;
-      font-size: 3em;
-      text-align: center;
-    }
-
-    table {
-      width: 100%;
-    }
   }
 }
 

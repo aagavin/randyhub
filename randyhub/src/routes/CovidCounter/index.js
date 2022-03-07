@@ -45,7 +45,7 @@ const CovidCounter = () => {
           <tfoot>
             <tr>
               <td colSpan="100%">
-                source:
+                Source:
                 {' '}
                 <a href="https://systems.jhu.edu/research/public-health/ncov/" rel="noreferrer" target="_blank">Johns Hopkins University</a>
               </td>
