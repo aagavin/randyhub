@@ -23,9 +23,7 @@ code {
 }
 
 h1 {
-  background: #FF5349;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #FF5349;
   font-size: 5em;
   line-height: 0.9em;
   margin: 20px 20px 20px 0;
@@ -51,10 +49,8 @@ p {
 }
 
 caption {
-  background: #FF5349;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 1.5em;
+  color: #FF5349;
+  font-size: 1.2em;
   line-height: 0.9em;
   margin: 20px 20px 0 0px;
   font-family: adelle-sans, sans-serif;
@@ -116,46 +112,4 @@ table > tr > td:nth-child(3n) {
   table {
     width: 100%;
   }
-}
-
-.horizontal-slider {
-  width: 100%;
-  max-width: 300px;
-}
-
-.hue-shift-thumb {
-  cursor: pointer;
-  position: absolute;
-  z-index: 100;
-  background: #ffffff;
-  border: 5px solid #624da4;
-  border-radius: 100%;
-  display: block;
-  box-shadow: 0 0 2px 0 rgb(0 0 0 / 44%);
-}
-
-.hue-shift-thumb.active {
-  background-color: grey;
-}
-
-.hue-shift-track {
-  position: relative;
-  background: #ddd;
-}
-
-.hue-shift-track.hue-shift-track-0 {
-  background: #624da4;
-}
-
-.horizontal-slider .hue-shift-track {
-  top: 20px;
-  height: 4px;
-}
-
-.horizontal-slider .hue-shift-thumb {
-  top: 12px;
-  width: 10px;
-  outline: none;
-  height: 10px;
-  line-height: 38px;
 }

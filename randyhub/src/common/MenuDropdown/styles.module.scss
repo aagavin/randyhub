@@ -14,28 +14,6 @@
     margin: 0 auto;
     padding-top: 25vh;
   }
-
-  .links,
-  .chaos {
-    display: flex;
-    flex-direction: column;
-    font-family: adelle-sans, sans-serif;
-    font-weight: 100;
-    font-size: 1.2em;
-    color: #ff5349;
-
-    a {
-      text-decoration: none !important;
-      color: #ff5349;
-      margin: 0 5px;
-      transition: 0.5s;
-
-      &:hover {
-        font-weight: 100;
-        color: #ffffff;
-      }
-    }
-  }
 }
 
 @media (max-width: 798px) {
