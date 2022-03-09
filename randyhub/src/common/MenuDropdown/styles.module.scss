@@ -39,6 +39,7 @@
 .btn-menu,
 .btn-exit {
   @include body-text;
+
   position: absolute;
   font-size: 2em;
   color: $main-color;

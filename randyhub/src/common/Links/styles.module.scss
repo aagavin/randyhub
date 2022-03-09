@@ -3,6 +3,7 @@
 
 .links {
   @include body-text;
+
   display: flex;
   flex-direction: column;
   font-size: 1em;

@@ -15,9 +15,9 @@
 
   div {
     display: block;
-    color: $background-color;
+    color: $main-color;
     font-weight: bolder;
-    background-color: black;
+    background-color: $background-light-color;
     cursor: pointer;
     width: 100%;
     margin: 0 auto;

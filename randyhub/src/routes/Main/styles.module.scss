@@ -12,6 +12,7 @@
 
 .title {
   @include title-text;
+
   color: $main-color;
   font-size: 14.5em;
   line-height: 0.8em;
@@ -20,6 +21,7 @@
 
 .subtitle {
   @include title-text;
+
   color: $main-color;
   font-size: 2em;
   line-height: 0.9em;

@@ -3,14 +3,28 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Roboto',
+    'Oxygen',
+    'Ubuntu',
+    'Cantarell',
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
     sans-serif;
   background-color: $background-color;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family:
+    source-code-pro,
+    Menlo,
+    Monaco,
+    Consolas,
+    'Courier New',
     monospace;
 }
 
@@ -25,6 +39,7 @@ code {
 
 h1 {
   @include title-text;
+
   color: $main-color;
   font-size: 5em;
   line-height: 0.9em;
@@ -33,22 +48,25 @@ h1 {
 
 h2 {
   @include body-text;
+
   color: $main-color;
   font-size: 1.2em;
 }
 
 p {
   @include body-text;
+
   color: $main-color;
   font-size: 1em;
 }
 
 caption {
   @include caption-text;
+
   color: $main-color;
   font-size: 1.2em;
   line-height: 0.9em;
-  margin: 20px 20px 0 0px;
+  margin: 20px 20px 0 0;
   padding-bottom: 20px;
 }
 
@@ -92,7 +110,6 @@ table > tr > td:nth-child(2n),
 table > tr > td:nth-child(3n) {
   text-align: right;
 }
-
 
 @media (max-width: 798px) {
   h1 {
