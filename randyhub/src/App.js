@@ -6,6 +6,7 @@ import {
   BrowserRouter, Route, Switch,
 } from 'react-router-dom';
 import MenuDropdown from './common/MenuDropdown';
+import RandyGalaxyCursor from './common/RandyGalaxyCursor';
 import Main from './routes/Main';
 import FontChaos from './common/FontChaos';
 
@@ -23,6 +24,7 @@ const App = () => {
         setHueFilter(retrievedHueValue);
       }
     } else {
+      setRandyCursor(0);
       localStorage.setItem('randyhub-hue-filter', hueFilter);
     }
   }, [hueFilter]);
