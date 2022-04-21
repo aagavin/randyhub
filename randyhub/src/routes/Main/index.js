@@ -5,7 +5,9 @@ import Chaos from '../../common/Chaos';
 import styles from './styles.module.scss';
 
 const Main = (props) => {
-  const { setHueFilter, hueFilter } = props;
+  const {
+    setHueFilter, hueFilter, randyCursor, setRandyCursor, globalFont, setGlobalFont,
+  } = props;
   return (
     <div className={`${styles.body}`}>
       <h1 className={`${styles.title}`}>
@@ -17,7 +19,14 @@ const Main = (props) => {
       <Curtain />
       <div className={`${styles.content}`}>
         <Links toggleDropdown={() => {}} />
-        <Chaos setHueFilter={setHueFilter} hueFilter={hueFilter} />
+        <Chaos
+          setHueFilter={setHueFilter}
+          hueFilter={hueFilter}
+          randyCursor={randyCursor}
+          setRandyCursor={setRandyCursor}
+          globalFont={globalFont}
+          setGlobalFont={setGlobalFont}
+        />
       </div>
     </div>
   );
