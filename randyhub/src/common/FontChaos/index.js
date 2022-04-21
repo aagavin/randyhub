@@ -6,26 +6,26 @@ const FontChaos = (props) => {
     globalFont,
   } = props;
 
-  const BrailleStyle = createGlobalStyle`
+  const Braille = createGlobalStyle`
   * {
     font-family: Braille !important;
   }`;
 
-  const DamgramStyle = createGlobalStyle`
+  const Damgram = createGlobalStyle`
   * {
     font-family: Damgram !important;
   }`;
 
-  const AmericanCaptainStyle = createGlobalStyle`
+  const Mortina = createGlobalStyle`
   * {
     font-family: Mortina !important;
   }`;
 
   return (
     <>
-      {globalFont === 3 && <BrailleStyle />}
-      {globalFont === 2 && <DamgramStyle />}
-      {globalFont === 1 && <AmericanCaptainStyle />}
+      {globalFont === 3 && <Braille />}
+      {globalFont === 2 && <Damgram />}
+      {globalFont === 1 && <Mortina />}
     </>
   );
 };
