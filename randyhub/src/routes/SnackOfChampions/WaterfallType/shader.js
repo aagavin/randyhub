@@ -31,7 +31,7 @@ export const fragmentShader = `
     // float shadow = 1.;
 
     vec3 texture = texture2D(uTexture, uv).rgb;
-    // texture *= vec3(uv.x, uv.y, 1.); // To help visualize the repeated uvs
+    texture *= vec3(uv.x, uv.y, 1.); // To help visualize the repeated uvs
 
     gl_FragColor = vec4(texture * shadow, 1.);
   }

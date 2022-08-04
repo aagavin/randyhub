@@ -4,16 +4,10 @@ import React, {
 import {
   Scene, PerspectiveCamera, WebGLRenderTarget, Color, TextureLoader,
   RawShaderMaterial, DoubleSide, Mesh,
-  WebGL1Renderer, Clock, PlaneBufferGeometry, ShaderMaterial,
+  WebGL1Renderer, Clock, PlaneBufferGeometry, ShaderMaterial, PlaneGeometry,
 } from 'three';
-import loadFont from 'load-bmfont';
-import createGeometry from 'three-bmfont-text';
 import MSDFShader from 'three-bmfont-text/shaders/msdf';
-import {
-  OrbitControls,
-} from 'three/examples/jsm/controls/OrbitControls';
-import fontFile from '../assets/Orbulon-Black.fnt';
-import fontAtlas from '../assets/Orbulon-Black.png';
+import SnackOfChampions from '../../../assets/snackofchampions.png';
 import {
   fragmentShader, vertexShader,
 } from './shader';
@@ -35,7 +29,6 @@ const WaterfallType = () => {
   let geometry;
   let material;
   let mesh;
-  let controls;
 
   const mount = useRef(null);
 
@@ -46,25 +39,26 @@ const WaterfallType = () => {
       window.innerHeight,
     );
     rtCamera = new PerspectiveCamera(45, 1, 0.1, 1000);
-    rtCamera.position.z = 6;
+    rtCamera.position.z = 10;
 
     rtScene = new Scene();
     rtScene.background = new Color('#000000');
+    fontGeometry = new PlaneGeometry(352, 1200);
 
     // Create text mesh with font geometry and material
     text = new Mesh(fontGeometry, fontMaterial);
 
     // Adjust dimensions
-    text.position.set(0.965, 0.275, 0.3);
-    text.rotation.set(Math.PI / 4, Math.PI, 0);
-    text.scale.set(0.005, 0.03, 5);
+    text.position.set(0.965, 0.275, 0.5);
+    text.rotation.set(Math.PI / 4, 0, Math.PI / 4);
+    text.scale.set(0.01, 0.01, 0.01);
 
     // Add text mesh to buffer scene
     rtScene.add(text);
   };
 
   const createMesh = () => {
-    geometry = new PlaneBufferGeometry(240, 60, 16, 14);
+    geometry = new PlaneBufferGeometry(240, 260, 16, 14);
     material = new ShaderMaterial({
       fragmentShader,
       uniforms: {
@@ -96,8 +90,6 @@ const WaterfallType = () => {
   };
 
   const renderAnimation = () => {
-    controls.update();
-
     // Update time
     material.uniforms.uTime.value = clock.getElapsedTime();
 
@@ -127,8 +119,13 @@ const WaterfallType = () => {
       2000,
     );
 
-    camera.position.z = 60;
-    camera.position.y = -80;
+    camera.position.x = -28;
+    camera.position.y = -150;
+    camera.position.z = 92.5;
+    camera.rotation.x = 1.01;
+    camera.rotation.y = -0.15;
+    camera.rotation.z = 0.245;
+
     scene = new Scene();
     clock = new Clock();
 
@@ -140,33 +137,24 @@ const WaterfallType = () => {
     renderer.setClearColor(0x000000, 1);
 
     mount.current.appendChild(renderer.domElement);
-    controls = new OrbitControls(camera, renderer.domElement);
 
-    // Create geometry of packed glyphs
-    loadFont(fontFile, (_err, font) => {
-      fontGeometry = createGeometry({
-        font,
-        text: 'CONDENSED MILK',
-      });
+    // Load texture containing font glyps
+    loader = new TextureLoader();
+    loader.load(SnackOfChampions, (texture) => {
+      fontMaterial = new RawShaderMaterial(
+        MSDFShader({
+          color: 0xffffff,
+          map: texture,
+          negate: false,
+          side: DoubleSide,
+          transparent: true,
+        }),
+      );
 
-      // Load texture containing font glyps
-      loader = new TextureLoader();
-      loader.load(fontAtlas, (texture) => {
-        fontMaterial = new RawShaderMaterial(
-          MSDFShader({
-            color: 0xffffff,
-            map: texture,
-            negate: false,
-            side: DoubleSide,
-            transparent: true,
-          }),
-        );
-
-        createRenderTarget();
-        createMesh();
-        animate();
-        addEvents();
-      });
+      createRenderTarget();
+      createMesh();
+      animate();
+      addEvents();
     });
   };
 
