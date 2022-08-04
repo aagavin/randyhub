@@ -3,10 +3,9 @@ import React, {
 } from 'react';
 import {
   Scene, PerspectiveCamera, WebGLRenderTarget, Color, TextureLoader,
-  RawShaderMaterial, DoubleSide, Mesh,
-  WebGL1Renderer, Clock, PlaneBufferGeometry, ShaderMaterial, PlaneGeometry,
+  DoubleSide, Mesh,
+  WebGL1Renderer, Clock, PlaneBufferGeometry, ShaderMaterial, PlaneGeometry, MeshBasicMaterial,
 } from 'three';
-import MSDFShader from 'three-bmfont-text/shaders/msdf';
 import SnackOfChampions from '../../../assets/snackofchampions.png';
 import {
   fragmentShader, vertexShader,
@@ -141,14 +140,14 @@ const WaterfallType = () => {
     // Load texture containing font glyps
     loader = new TextureLoader();
     loader.load(SnackOfChampions, (texture) => {
-      fontMaterial = new RawShaderMaterial(
-        MSDFShader({
+      fontMaterial = new MeshBasicMaterial(
+        {
           color: 0xffffff,
           map: texture,
           negate: false,
           side: DoubleSide,
           transparent: true,
-        }),
+        },
       );
 
       createRenderTarget();

@@ -18,7 +18,7 @@ export const fragmentShader = `
   uniform float uTime;
 
   void main() {
-    float time = uTime * 0.5;
+    float time = uTime * 0.8;
     vec2 repeat = -vec2(5., 3.);
     // To repeat the uvs we need to multiply them by a scalar
     // and then get the fractional part of it so they from 0 to 1
