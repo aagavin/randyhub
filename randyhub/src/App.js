@@ -46,7 +46,7 @@ const App = () => {
 
   return (
     <div id="app" style={{ filter: `hue-rotate(${hueFilter * 3.6}deg)` }}>
-      <Confetti confetti={confetti} setConfetti={setConfetti} />
+      <Confetti confetti={confetti} setConfetti={setConfetti} count={1} />
       <FontChaos globalFont={globalFont} />
       {randyCursor > 0
       && <RandyGalaxyCursor count={50} />}

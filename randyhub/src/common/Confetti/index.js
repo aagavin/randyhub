@@ -1,106 +1,121 @@
-// TODO: Implement https://www.codehim.com/animation-effects/javascript-confetti-explosion-effect/
-
-import {
-  gsap,
-} from 'gsap';
+/* eslint-disable no-param-reassign */
 import React, {
   useEffect, useRef,
 } from 'react';
-import sampleMouth from '../../assets/coolhead.png';
+import styles from './style.module.scss';
 
 const Confetti = (props) => {
-  const { count } = props;
-  const circle = useRef(null);
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const mouths = Array(count).fill().map(() => (useRef(null)));
-  const start = new Date();
-  const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-  const setter = Array(count).fill().map(() => ({ x: 0, y: 0 }));
-  const speed = 0.015;
-  const position = Array(count)
-    .fill().map(() => ({ x: window.innerWidth / 2, y: window.innerHeight / 2 }));
+  const { confetti, setConfetti } = props;
+  const confettiCanvas = useRef(null);
+  let canvas; let ctx;
 
-  useEffect(() => {
-    function moveCircle(event) {
-      if (event) {
-        if (circle.current) {
-          gsap.to(circle.current, 0.1, {
-            x: event.x,
-            y: event.y,
-            z: 0.1,
-          });
-        }
-        mouse.x = event.x;
-        mouse.y = event.y;
-      }
-    }
+  const confettiGroup = [];
+  const confettiCount = 300;
+  const gravity = 0.5;
+  const terminalVelocity = 3;
+  const drag = 0.075;
+  const colors = [
+    { front: 'red', back: 'darkred' },
+    { front: 'green', back: 'darkgreen' },
+    { front: 'blue', back: 'darkblue' },
+    { front: 'yellow', back: 'darkyellow' },
+    { front: 'orange', back: 'darkorange' },
+    { front: 'pink', back: 'darkpink' },
+    { front: 'purple', back: 'darkpurple' },
+    { front: 'turquoise', back: 'darkturquoise' }];
 
-    function updateTicker() {
-      mouths.forEach((mouth, index) => {
-        const dt = 1.0 - (1.0 - speed) ** gsap.ticker.deltaRatio();
-        const time = start - Date.now();
-        const radius = index * 50 + 100;
-        position[index].x += (
-          (mouse.x + radius * Math.sin(time * 0.001 + index))
-          - position[index].x) * dt;
-        position[index].y += (
-          (mouse.y + radius * Math.cos(time * 0.001 + index))
-          - position[index].y) * dt;
-        setter[index].x(position[index].x);
-        setter[index].y(position[index].y);
+  const resizeCanvas = () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  };
 
-        // set rotation
-        if (mouth.current) {
-          const target = mouth.current.getBoundingClientRect();
-          const centerX = target.x + target.width / 2;
-          const centerY = target.y + target.height / 2;
-          const rotation = Math.atan2(
-            (mouse.y - centerY),
-            (mouse.x - centerX),
-          ) * (180 / Math.PI);
-          gsap.set(mouth.current, {
-            rotation,
-          });
-        }
+  const randomRange = (min, max) => Math.random() * (max - min) + min;
+
+  const initConfetti = () => {
+    canvas = confettiCanvas.current;
+    ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    for (let i = 0; i < confettiCount; i += 1) {
+      confettiGroup.push({
+        color: colors[Math.floor(randomRange(0, colors.length))],
+        dimensions: {
+          x: randomRange(5, 15),
+          y: randomRange(10, 20),
+        },
+        position: {
+          x: randomRange(0, canvas.width),
+          y: randomRange(0, canvas.height - 1),
+        },
+        rotation: randomRange(0, 2 * Math.PI),
+        scale: {
+          x: 1,
+          y: 1,
+        },
+        velocity: {
+          x: randomRange(-25, 25),
+          y: randomRange(0, -50),
+        },
       });
     }
+  };
 
-    mouths.forEach((mouth, index) => {
-      if (mouth.current) {
-        setter[index].x = gsap.quickSetter(mouth.current, 'x', 'px');
-        setter[index].y = gsap.quickSetter(mouth.current, 'y', 'px');
-        gsap.set(mouth.current, {
-          scale: 0.3,
-        });
-      }
+  const render = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    confettiGroup.forEach((confetto, index) => {
+      const width = confetto.dimensions.x * confetto.scale.x;
+      const height = confetto.dimensions.y * confetto.scale.y;
+
+      // Move canvas to position and rotate
+      ctx.translate(confetto.position.x, confetto.position.y);
+      ctx.rotate(confetto.rotation);
+
+      // Apply forces to velocity
+      confetto.velocity.x -= confetto.velocity.x * drag;
+      confetto.velocity.y = Math.min(confetto.velocity.y + gravity, terminalVelocity);
+      confetto.velocity.x += Math.random() > 0.5 ? Math.random() : -Math.random();
+
+      // Set position
+      confetto.position.x += confetto.velocity.x;
+      confetto.position.y += confetto.velocity.y;
+
+      // Delete confetti when out of frame
+      if (confetto.position.y >= canvas.height) confettiGroup.splice(index, 1);
+
+      // Loop confetto x position
+      if (confetto.position.x > canvas.width) confetto.position.x = 0;
+      if (confetto.position.x < 0) confetto.position.x = canvas.width;
+
+      // Spin confetto by scaling y
+      confetto.scale.y = Math.cos(confetto.position.y * 0.05);
+      ctx.fillStyle = confetto.scale.y > 0 ? confetto.color.front : confetto.color.back;
+
+      // Draw confetti
+      ctx.fillRect(-width / 2, -height / 2, width, height);
+
+      // Reset transform matrix
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
     });
+    window.requestAnimationFrame(render);
+  };
 
-    window.addEventListener('mousemove', moveCircle);
-    gsap.ticker.add(updateTicker);
+  window.addEventListener('resize', () => {
+    resizeCanvas();
   });
 
-  const randies = [];
-  for (let i = 0; i < count; i += 1) {
-    randies.push(
-      <img
-        src={sampleMouth}
-        alt="Img"
-        className="randy-head"
-        ref={mouths[i]}
-        key={i}
-      />,
-    );
-  }
+  useEffect(() => {
+    if (confetti !== 0) {
+      initConfetti();
+      render();
+      setTimeout(() => { setConfetti(0); }, 2500);
+    }
+  }, [confetti]);
 
   return (
     <>
-      <div className="stellar-cursor">
-        <div
-          className="cursor-circle"
-          ref={circle}
-        />
-        {randies}
-      </div>
+      <canvas className={styles['confetti-page']} ref={confettiCanvas} />
     </>
   );
 };
